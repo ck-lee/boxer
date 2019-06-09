@@ -13,6 +13,7 @@ class Boxes extends Component {
     render() {
         const {
             alignment,
+            backgroundColor,
             latestPosts,
         } = this.props;
 
@@ -22,19 +23,18 @@ class Boxes extends Component {
             <Fragment>
                 { 
                     hasPosts ? 
-                    <div className="boxer">
+                    <ul className="boxer" style={ { textAlign: alignment, backgroundColor: backgroundColor } }>
                             {
                                 latestPosts.map( ( post, i ) => {
                                     return (
-                                        <div key={i} style={ { textAlign: alignment } }>
-                                            <div>{post.title.raw}</div>
-                                            <div>{post.date}</div>
-                                            <div>{post.raw}</div>
-                                        </div>
+                                        <li key={i} style={ { textAlign: alignment } }>
+                                            <h5>{post.title.raw}</h5>
+                                            <p>{ post.date }</p>
+                                        </li>
                                     );
                                 })
                             }
-                    </div>
+                    </ul>
                     :
                     <div>Boxer is useless without posts.</div> 
                 }
@@ -45,14 +45,14 @@ class Boxes extends Component {
 
 export default withSelect( ( select, props ) => {
 	const {
-		displayNumber = 3
+		displayNumber = 100
 	} = props;
 	const { getEntityRecords } = select( 'core' )
 	const latestPostsQuery = pickBy( {
-		categories: '',
+        context: 'view',
 		order: 'desc',
 		orderby: 'date',
-		per_page: displayNumber, // eslint-disable-line camelcase
+        per_page: displayNumber, // eslint-disable-line camelcase
 	}, value => ! isUndefined( value ) )
 	return {
 		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),

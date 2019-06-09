@@ -19,7 +19,11 @@ registerBlockType( 'boxer/boxer', {
         displayNumber: {
             type: 'integer',
             default: 3
-        }
+		},
+		backgroundColor: {
+			type: 'string', 
+			default: 'white', // Default value for newly added block
+		}
     },
     keywords: [],
 	supports: {},

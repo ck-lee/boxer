@@ -8,7 +8,8 @@ const { __ } = wp.i18n;
 const {
 	AlignmentToolbar,
     BlockControls,
-    InspectorControls
+    InspectorControls,
+    ColorPalette
 } = wp.editor;
 
 const {
@@ -27,7 +28,8 @@ class Edit extends Component {
         const {
             attributes: {
                 alignment,
-                displayNumber
+                displayNumber,
+                backgroundColor
             },
             className,
             latestPosts,
@@ -45,6 +47,11 @@ class Edit extends Component {
                             min={ 1 }
                             max={ 12 }
                         />
+                        <label className="blocks-base-control__label">background color</label>
+                        <ColorPalette // Element Tag for Gutenberg standard colour selector
+                            value= { backgroundColor }
+                            onChange={ backgroundColor => setAttributes( { backgroundColor } )} // onChange event callback
+                        />
                     </InspectorControls>
                 }
                 {
@@ -59,6 +66,7 @@ class Edit extends Component {
                     <Boxes
                         alignment={alignment}
                         displayNumber={displayNumber}
+                        backgroundColor={backgroundColor}
                     ></Boxes>
                 }
             </Fragment>
