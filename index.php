@@ -1,11 +1,10 @@
 <?php
 /**
- * Plugin Name: Boxer
+ * Plugin Name: Boxer Block
  * Description: Boxer puts your WordPress posts into boxes.
  * Version: 1.0
  * Author: CK Lee
  * Text Domain: boxer
- * Domain Path: /languages
  *
  * @package boxer
  */

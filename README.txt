@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Boxer Block ===
 Contributors: ck3lee
 Tags: block, posts
 Requires at least:5.0
@@ -12,7 +12,7 @@ Boxer puts your WordPress posts into boxes.
 
 == Description ==
  
-Boxer puts your WordPress posts into boxes on a page.
+Boxer is a Block that puts your WordPress posts into boxes on a page.
 
 == Installation ==
  
