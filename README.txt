@@ -16,7 +16,7 @@ Boxer is a Block that puts your WordPress posts into boxes on a page.
 
 == Installation ==
  
-Install and activate the plugin. Then, open a block editor and look for block "Boxer".
+Install and activate the plugin. Then, edit a page using Blcok Editor and add/look for the block "Boxer".
  
 == Screenshots ==
  
