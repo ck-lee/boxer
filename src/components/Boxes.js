@@ -5,10 +5,10 @@ import { isUndefined, pickBy } from 'lodash'
 class Boxes extends Component {
 
     constructor() {
-		super( ...arguments );
-		this.state = {
-		};
-	}
+        super(...arguments);
+        this.state = {
+        };
+    }
 
     render() {
         const {
@@ -17,44 +17,42 @@ class Boxes extends Component {
             latestPosts,
         } = this.props;
 
-        const hasPosts = Array.isArray( latestPosts ) && latestPosts.length;
- 
+        const hasPosts = Array.isArray(latestPosts) && latestPosts.length;
         return (
             <Fragment>
-                { 
-                    hasPosts ? 
-                    <ul className="boxer" style={ { textAlign: alignment, backgroundColor: backgroundColor } }>
+                {
+                    hasPosts ?
+                        <ul className="boxer" >
                             {
-                                latestPosts.map( ( post, i ) => {
-                                    return (
-                                        <li key={i} style={ { textAlign: alignment } }>
-                                            <h5>{post.title.raw}</h5>
-                                            <p>{ post.date }</p>
-                                        </li>
-                                    );
+                                latestPosts.map((post, i) => {
+                                    if (post) {
+                                        const dateString = post.date ? new Date(post.date).toDateString().substring(4, 15) : '';
+                                        const markup = { __html: post.content.rendered };
+                                        return (
+                                            <li key={i} style={{ textAlign: alignment, backgroundColor: backgroundColor }} >
+                                                <a className="title" href={post.link}>{post.title.rendered}</a>
+                                                <p className="content" dangerouslySetInnerHTML={markup}></p>
+                                                <span className="date">{dateString}</span>
+                                            </li>
+                                        );
+                                    }
                                 })
                             }
-                    </ul>
-                    :
-                    <div>Boxer is useless without posts.</div> 
+                        </ul>
+                        :
+                        <div>Boxer is useless without posts.</div>
                 }
             </Fragment>
         );
     }
 }
 
-export default withSelect( ( select, props ) => {
-	const {
-		displayNumber = 100
-	} = props;
-	const { getEntityRecords } = select( 'core' )
-	const latestPostsQuery = pickBy( {
-        context: 'view',
-		order: 'desc',
-		orderby: 'date',
-        per_page: displayNumber, // eslint-disable-line camelcase
-	}, value => ! isUndefined( value ) )
-	return {
-		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),
-	}
-} )( Boxes )
+export default withSelect((select, props) => {
+    const {
+        displayNumber = 3
+    } = props;
+    const { getPosts } = select('boxer')
+    return {
+        latestPosts: getPosts(displayNumber),
+    }
+})(Boxes)

@@ -1,10 +1,10 @@
 const save = props => {
-    const { 
+    const {
         className,
-        attributes: { alignment, displayNumber, backgroundColor}
+        attributes: { alignment, displayNumber, backgroundColor }
     } = props;
 
-    setTimeout( function () {
+    setTimeout(function () {
 
         if (window.__dynamicBlockReload) {
             window.__dynamicBlockReload();
@@ -12,14 +12,13 @@ const save = props => {
     });
     return (
         <div>
-            <div 
+            <div
                 className={className}
                 data-alignment={alignment}
                 data-display-number={displayNumber}
                 data-background-color={backgroundColor}
                 id={'dynamic-block'}
-                >
-                { displayNumber }
+            >
             </div>
         </div>
     );

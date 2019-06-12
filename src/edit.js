@@ -6,7 +6,7 @@ import Boxes from './components/Boxes';
 const { __ } = wp.i18n;
 
 const {
-	AlignmentToolbar,
+    AlignmentToolbar,
     BlockControls,
     InspectorControls,
     ColorPalette
@@ -19,10 +19,10 @@ const {
 class Edit extends Component {
 
     constructor() {
-		super( ...arguments );
-		this.state = {
-		};
-	}
+        super(...arguments);
+        this.state = {
+        };
+    }
 
     render() {
         const {
@@ -35,34 +35,34 @@ class Edit extends Component {
             latestPosts,
             setAttributes
         } = this.props;
- 
+
         return (
             <Fragment>
                 {
                     <InspectorControls>
                         <RangeControl
-                            label={ __( 'Number of posts displayed' ) }
-                            value={ displayNumber }
-                            onChange={ displayNumber => setAttributes( { displayNumber } ) }
-                            min={ 1 }
-                            max={ 12 }
+                            label={__('Number of posts displayed')}
+                            value={displayNumber}
+                            onChange={displayNumber => setAttributes({ displayNumber })}
+                            min={1}
+                            max={12}
                         />
                         <label className="blocks-base-control__label">background color</label>
                         <ColorPalette // Element Tag for Gutenberg standard colour selector
-                            value= { backgroundColor }
-                            onChange={ backgroundColor => setAttributes( { backgroundColor } )} // onChange event callback
+                            value={backgroundColor}
+                            onChange={backgroundColor => setAttributes({ backgroundColor })} // onChange event callback
                         />
                     </InspectorControls>
                 }
                 {
                     <BlockControls>
                         <AlignmentToolbar
-                            value={ alignment }
-                            onChange={ alignment => setAttributes( { alignment } ) }
+                            value={alignment}
+                            onChange={alignment => setAttributes({ alignment })}
                         />
                     </BlockControls>
                 }
-                { 
+                {
                     <Boxes
                         alignment={alignment}
                         displayNumber={displayNumber}
@@ -74,18 +74,4 @@ class Edit extends Component {
     }
 }
 
-export default withSelect( ( select, props ) => {
-	const {
-		displayNumber = 3
-	} = props.attributes
-	const { getEntityRecords } = select( 'core' )
-	const latestPostsQuery = pickBy( {
-		categories: '',
-		order: 'desc',
-		orderby: 'date',
-		per_page: displayNumber,
-	}, value => ! isUndefined( value ) )
-	return {
-		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),
-	}
-} )( Edit )
+export default Edit;

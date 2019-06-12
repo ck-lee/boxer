@@ -1,10 +1,11 @@
-const {element} = wp;
+const { element } = wp;
 import Boxes from './components/Boxes';
+import './store';
 
 const DynamicBlock = (props) => {
     return (
         <div>
-            <Boxes 
+            <Boxes
                 alignment={props.alignment}
                 displayNumber={props.displayNumber}
                 backgroundColor={props.backgroundColor}
@@ -20,7 +21,7 @@ window.__dynamicBlockReload = function () {
         let displayNumber = container.getAttribute('data-display-number');
         let backgroundColor = container.getAttribute('data-background-color');
         element.render(
-            <DynamicBlock alignment={alignment} displayNumber={displayNumber} backgroundColor={backgroundColor}/>,
+            <DynamicBlock alignment={alignment} displayNumber={displayNumber} backgroundColor={backgroundColor} />,
             container
         )
     }
