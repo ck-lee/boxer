@@ -15,6 +15,3 @@ This is an experiment to build a JavaScript-based, single block plugin to be fit
 * Boxer is inspired by :
   * https://github.com/WordPress/gutenberg-examples
   * https://github.com/JimSchofield/guty-blocks/blob/master/src/react-view/react-view.view.js
-  
-
-
