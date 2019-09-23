@@ -47,7 +47,7 @@ class Edit extends Component {
                             min={1}
                             max={12}
                         />
-                        <label className="blocks-base-control__label">background color</label>
+                        <label className="blocks-base-control__label">{__('Background color')}</label>
                         <ColorPalette // Element Tag for Gutenberg standard colour selector
                             value={backgroundColor}
                             onChange={backgroundColor => setAttributes({ backgroundColor })} // onChange event callback
